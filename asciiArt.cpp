@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	}
 	ifstream aInFile;
 	ofstream aOutFile;
-	aInFile.open(argv[1], ios::binary);
+	aInFile.open(argv[1], ios::in);
 	if (!aInFile.good())	//checks input file can be opened
 	{
 		aInFile.close();
@@ -31,27 +31,27 @@ int main(int argc, char* argv[])
 	}
 	int data;
 	char value;
-	while (inFile.good())
+	while (aInFile.good())
 	{
-		inFile >> data;
+		aInFile >> data;
 		for(int i = 0; i < 4; i++)
 		{
 			//printf("%d", data);
 			value = data % 256;
 			if(value == 0x0A)
 			{
-				outFile << endl;
+				aOutFile << endl;
 			}
 			else
 			{
-				outFile << value;
+				aOutFile << value;
 			}
 			data = data / 256;
 		}
 	}
-	outFile << "Prepared by Joshua Wong 101350311";
-	inFile.close();
-	outFile.close();
+	aOutFile << endl << "Prepared by Joshua7922";
+	aInFile.close();
+	aOutFile.close();
 	cout << endl << "Files successfully closed" << endl;
 	return 0;
 }
